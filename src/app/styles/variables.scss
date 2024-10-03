@@ -1,0 +1,7 @@
+$page-wrapper-height: 100vh;
+$page-wrappper-padding-horizontal: 12px;
+$page-wrappper-padding-vertical: 8px;
+$page-wrapper-padding-top: calc($page-wrappper-padding-vertical + env(safe-area-inset-top, $page-wrappper-padding-vertical));
+$page-wrapper-padding-right: calc($page-wrappper-padding-horizontal + env(safe-area-inset-right, $page-wrappper-padding-horizontal));
+$page-wrapper-padding-bottom: calc($page-wrappper-padding-vertical + env(safe-area-inset-top, $page-wrappper-padding-vertical));
+$page-wrapper-padding-left: calc($page-wrappper-padding-horizontal + env(safe-area-inset-left, $page-wrappper-padding-horizontal));

@@ -9,7 +9,7 @@
 @include mat.core();
 
 // Define the theme object.
-$aleph-theme: mat.define-theme((
+$theme: mat.define-theme((
   color: (
     theme-type: light,
     primary: mat.$azure-palette,
@@ -23,14 +23,21 @@ $aleph-theme: mat.define-theme((
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+
+//Colors
+$primary: mat.get-theme-color($theme, primary);
+$primary-container: mat.get-theme-color($theme, primary-container);
+$on-primary: mat.get-theme-color($theme, on-primary);
+// $primary-80: mat.get-theme-color($theme, primary,80);
+// $color-secondary-light: mat.get-theme-color($theme, secondary, 80);
+$secondary: mat.get-theme-color($theme, secondary);
+$secondary-container: mat.get-theme-color($theme, secondary-container);
+$on-secondary: mat.get-theme-color($theme, on-secondary);
+
+$surface: mat.get-theme-color($theme, surface);
+$surface-container: mat.get-theme-color($theme, surface-container);
+
 :root {
-  @include mat.all-component-themes($aleph-theme);
+  @include mat.all-component-themes($theme);
+  --mat-toolbar-container-background-color:#{$primary-container};
 }
-
-// Comment out the line below if you want to use the pre-defined typography utility classes.
-// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-// @include mat.typography-hierarchy($aleph-theme);
-
-// Comment out the line below if you want to use the deprecated `color` inputs.
-// @include mat.color-variants-backwards-compatibility($aleph-theme);
-/* You can add global styles to this file, and also import other style files */

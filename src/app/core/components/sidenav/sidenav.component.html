@@ -1,0 +1,17 @@
+<mat-sidenav-container>
+    <mat-sidenav role="dialog" mode='over' [opened]="true"></mat-sidenav>
+    <mat-sidenav-content class="full-screen">
+        <!-- Top Bar for Large Screen -->
+        @if(!coreService.isMobile()){
+        <tap-bar-top></tap-bar-top>
+        }
+        <!-- Main Content -->
+        <div class="flex-column">
+            hihihi
+        </div>
+        <!-- Bottom Bar for mobile Screen -->
+        @if(coreService.isMobile()){
+        <tap-bar-bottom></tap-bar-bottom>
+        }
+    </mat-sidenav-content>
+</mat-sidenav-container>

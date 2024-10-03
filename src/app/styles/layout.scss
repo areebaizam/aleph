@@ -1,0 +1,13 @@
+@import '@styles/variables.scss';
+
+.flex-column,
+.full-screen {
+    display: flex !important;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.full-screen {
+    min-width: 360px;
+    min-height: $page-wrapper-height;
+}
