@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-    <mat-sidenav role="dialog" mode='over' [opened]="true"></mat-sidenav>
+    <mat-sidenav role="dialog" mode='over' [opened]="toggleService.isSidebarOpen()"></mat-sidenav>
     <mat-sidenav-content class="full-screen">
         <!-- Top Bar for Large Screen -->
         @if(!coreService.isMobile()){
@@ -7,7 +7,12 @@
         }
         <!-- Main Content -->
         <div class="flex-column">
+            @if(!coreService.isMobile()){
+            <mat-toolbar></mat-toolbar> }
+            <!-- Router Outlet -->
             <router-outlet></router-outlet>
+            @if(coreService.isMobile()){
+            <mat-toolbar></mat-toolbar> }
         </div>
         <!-- Bottom Bar for mobile Screen -->
         @if(coreService.isMobile()){

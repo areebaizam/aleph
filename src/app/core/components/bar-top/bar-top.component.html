@@ -1,6 +1,13 @@
 <!-- TODO Remove Aria hardcode -->
-<mat-toolbar aria-label="App Bar" role="navigation">
+<mat-toolbar aria-label="App Bar" role="navigation" class="position-fixed">
     <tap-brand></tap-brand>
-    <div>menu</div>
-    <div>action</div>
+    <div>
+        @for (link of data; track $index) {
+        <tap-btn-navigation [data]="link"></tap-btn-navigation>}
+    </div>
+
+    <div>
+        @for(icon of icons;track $index){
+        <tap-icon-event-toggle [data]="icon"></tap-icon-event-toggle>}
+    </div>
 </mat-toolbar>
