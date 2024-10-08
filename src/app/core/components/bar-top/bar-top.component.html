@@ -7,7 +7,7 @@
     </div>
 
     <div>
-        @for(icon of icons;track $index){
+        @for(icon of toggleService.toggleIcons();track $index){
         <tap-icon-event-toggle [data]="icon"></tap-icon-event-toggle>}
     </div>
 </mat-toolbar>

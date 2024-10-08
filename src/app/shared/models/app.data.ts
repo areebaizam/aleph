@@ -79,21 +79,20 @@ export const APP_NAV_BTNS = [
 export const APP_EVENT_TOGGLE_ICONS = [
     {
         icon: "menu",
-        iconAlt: "menu",
-        // iconAlt: "menu_open", TODO Handle sidenav icon from opened change event
-        state:false,
+        iconAlt: "menu_open",
+        isActive:false,
         type: eAppEventToggleType.SIDENAV,
     },
     {
         icon: "fullscreen",
         iconAlt: "fullscreen_exit",
-        state:false,
+        isActive:false,
         type: eAppEventToggleType.FULLSCREEN,
     },
     {
         icon: "dark_mode",
         iconAlt: "light_mode",
-        state:false,
+        isActive:false,
         type: eAppEventToggleType.THEME,
     },
 

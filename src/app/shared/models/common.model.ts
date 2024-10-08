@@ -15,8 +15,6 @@ export enum eAppEventToggleType {
   SIDENAV,
   FULLSCREEN,
   THEME,
-  // ADMIN_DASHBOARD ="",
-  // ADMIN_SETTINGS ="settings",
 }
 
 export class BtnNavModel {
@@ -29,17 +27,11 @@ export class BtnNavModel {
   children: BtnNavModel[] | null = null;
 }
 
-
-export interface ToggleStateModel {
-  type: eAppEventToggleType;
-  state: boolean;
-}
-export interface EventToggleModel extends ToggleStateModel {
+export interface EventToggleModel {
   icon: string;
   iconAlt: string;
-
-  // onClickToggleIcon: boolean;
-  // onClickToggleState: boolean;
+  type: eAppEventToggleType;
+  isActive: boolean;
 }
 
 // export interface BtnNavModel {

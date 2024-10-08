@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ToggleService } from '@core/services/toggle.service';
@@ -13,21 +13,15 @@ const materialModules = [MatButtonModule, MatIconModule]
   templateUrl: './icon-event-toggle.component.html',
   styleUrl: './icon-event-toggle.component.scss'
 })
-export class IconEventToggleComponent implements OnInit {
+
+export class IconEventToggleComponent {
   data = input.required<EventToggleModel>();
   toggleService = inject(ToggleService);
-
-  state = signal<boolean>(false);
-  icon = computed<string>(() => !this.state() ? this.data().icon : this.data().iconAlt);
-
-  ngOnInit(): void {
-    this.state.set(this.data().state);
-  }
+  icon = computed<string>(() => !this.data().isActive ? this.data().icon : this.data().iconAlt);
 
   onToggleIconClicked($event: Event): void {
     $event.stopPropagation();
-    this.state.update(state=>!state);
-    this.toggleService.handleToggleEvent(this.data().type, this.state());
+    this.toggleService.handleToggleEvent(this.data().type, !this.data().isActive);
   }
 
 }

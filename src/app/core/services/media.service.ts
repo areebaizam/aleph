@@ -1,32 +1,32 @@
 import { inject, Injectable, signal } from "@angular/core";
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { map } from "rxjs/internal/operators/map";
 import { shareReplay } from "rxjs/internal/operators/shareReplay";
 
 @Injectable({
   providedIn: "root",
 })
-export class CoreService {
+export class MediaService {
   // Media
   private breakpointObserver = inject(BreakpointObserver);
-
+  private readonly LARGE: string = '(min-width: 840px)';
   isMobile = signal<boolean>(false);
+  isLarge = signal<boolean>(false);
 
   constructor() {
     this.getScreenSize();
   }
-  
+
   //https://material.angular.io/cdk/layout/overview
   //XSmall	(max-width: 599.98px)
   private getScreenSize(): void {
     this.breakpointObserver
-      .observe(Breakpoints.XSmall)
+      .observe([Breakpoints.XSmall, this.LARGE])
       .pipe(
-        map((result) => result.matches),
         shareReplay(1)
       )
-      .subscribe((next) => {
-        this.isMobile.set(next);
+      .subscribe((state) => {
+        this.isMobile.set(state.breakpoints[Breakpoints.XSmall]);
+        this.isLarge.set(state.breakpoints[this.LARGE]);
       });
   }
 }

@@ -1,7 +1,8 @@
-import { Component, } from '@angular/core';
+import { Component, inject, } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ToggleService } from '@core/services';
 import { BrandComponent, BtnNavigationComponent, IconEventToggleComponent } from '@shared/components';
-import { BtnNavModel, EventToggleModel, APP_NAV_BTNS, APP_EVENT_TOGGLE_ICONS, eAppEventToggleType } from '@shared/models';
+import { APP_NAV_BTNS, BtnNavModel } from '@shared/models';
 
 
 const components = [BrandComponent, BtnNavigationComponent, IconEventToggleComponent]
@@ -13,6 +14,6 @@ const components = [BrandComponent, BtnNavigationComponent, IconEventToggleCompo
   styleUrl: './bar-top.component.scss'
 })
 export class BarTopComponent {
-  data: BtnNavModel[] = APP_NAV_BTNS;
-  icons: EventToggleModel[] = APP_EVENT_TOGGLE_ICONS;
+  data: BtnNavModel[] = APP_NAV_BTNS;//TODO move this to service
+  toggleService = inject(ToggleService);
 }
