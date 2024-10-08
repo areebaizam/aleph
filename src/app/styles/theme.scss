@@ -9,50 +9,45 @@
 @include mat.core();
 
 // Define the theme object.
-$theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  ),
-  density: (
-    scale: 0,
-  )
-));
+$light-theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$rose-palette,
+        tertiary: mat.$blue-palette,
+      )));
+
+$dark-theme: mat.define-theme((color: (theme-type: dark,
+        primary: mat.$rose-palette,
+        tertiary: mat.$blue-palette,
+      )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 
 //Colors
-$primary: mat.get-theme-color($theme, primary);
-$primary-container: mat.get-theme-color($theme, primary-container);
-$on-primary: mat.get-theme-color($theme, on-primary);
-$primary-80: mat.get-theme-color($theme, primary,80);
-// 
-$secondary: mat.get-theme-color($theme, secondary);
-$secondary-container: mat.get-theme-color($theme, secondary-container);
-$on-secondary: mat.get-theme-color($theme, on-secondary);
-$secondary-80: mat.get-theme-color($theme, secondary, 80);
+// $primary: mat.get-theme-color($theme, primary);
+// $primary-container: mat.get-theme-color($theme, primary-container);
+// $on-primary: mat.get-theme-color($theme, on-primary);
+// $primary-80: mat.get-theme-color($theme, primary, 80);
+// // 
+// $secondary: mat.get-theme-color($theme, secondary);
+// $secondary-container: mat.get-theme-color($theme, secondary-container);
+// $on-secondary: mat.get-theme-color($theme, on-secondary);
+// $secondary-80: mat.get-theme-color($theme, secondary, 80);
 
-$surface: mat.get-theme-color($theme, surface);
-$surface-container: mat.get-theme-color($theme, surface-container);
+// $surface: mat.get-theme-color($theme, surface);
+// $surface-container: mat.get-theme-color($theme, surface-container);
 
-:root {
-  @include mat.all-component-themes($theme);
-  // --mat-toolbar-container-background-color:#{$primary-container};
-  --mat-toolbar-container-text-color:#{$primary};
-  --mdc-icon-button-icon-color:#{$secondary};
+html {
+  // Apply the light theme by default
+  @include mat.all-component-themes($light-theme);
+
+  // Apply the light theme only when the user prefers light themes.
+  // @media (prefers-color-scheme: dark) {
+  //   // Use the `-color` mixins to only apply color styles without reapplying the same
+  //   // typography and density styles.
+  //   // @include mat.all-component-colors($dark-theme);
+  // }  
 }
-
-
-// .mat-mdc-list-item,
-// .mat-toolbar {
-//     user-select: none;
-//     text-transform: capitalize;
-//     --mat-toolbar-container-text-color:#{$primary};
-// }
-
-// .mdc-list-item--activated{
-//     --mdc-list-list-item-leading-icon-color:#{$primary};
-// }
+.dark-theme{
+  @include mat.all-component-colors($dark-theme);
+}
