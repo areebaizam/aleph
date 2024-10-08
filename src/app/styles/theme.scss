@@ -8,6 +8,8 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
+@import '@styles/colors.scss';
+
 // Define the theme object.
 $light-theme: mat.define-theme((color: (theme-type: light,
         primary: mat.$rose-palette,
@@ -19,35 +21,28 @@ $dark-theme: mat.define-theme((color: (theme-type: dark,
         tertiary: mat.$blue-palette,
       )));
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-
-//Colors
-// $primary: mat.get-theme-color($theme, primary);
-// $primary-container: mat.get-theme-color($theme, primary-container);
-// $on-primary: mat.get-theme-color($theme, on-primary);
-// $primary-80: mat.get-theme-color($theme, primary, 80);
-// // 
-// $secondary: mat.get-theme-color($theme, secondary);
-// $secondary-container: mat.get-theme-color($theme, secondary-container);
-// $on-secondary: mat.get-theme-color($theme, on-secondary);
-// $secondary-80: mat.get-theme-color($theme, secondary, 80);
-
-// $surface: mat.get-theme-color($theme, surface);
-// $surface-container: mat.get-theme-color($theme, surface-container);
-
 html {
   // Apply the light theme by default
   @include mat.all-component-themes($light-theme);
 
-  // Apply the light theme only when the user prefers light themes.
+
+  // Apply the dark theme only when the user prefers dark themes.
   // @media (prefers-color-scheme: dark) {
   //   // Use the `-color` mixins to only apply color styles without reapplying the same
   //   // typography and density styles.
   //   // @include mat.all-component-colors($dark-theme);
   // }  
 }
-.dark-theme{
+
+.dark-theme {
   @include mat.all-component-colors($dark-theme);
+}
+
+
+.mat-toolbar {
+  user-select: none;
+  text-transform: capitalize;
+  justify-content: space-between;
+  --mat-toolbar-container-text-color:#{$primary};
+  --mdc-icon-button-icon-color: #{$primary};  
 }

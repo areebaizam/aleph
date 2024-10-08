@@ -1,6 +1,6 @@
-@import '@styles/theme.scss';
+@import '@styles/colors.scss';
 
-.mat-toolbar-single-row{
-    justify-content: space-between;
-    // border-bottom: 1px solid #{$secondary-80};
+.mat-toolbar{
+    background: $surface-container;
+    border-bottom: 1px solid $outline-variant;
 }

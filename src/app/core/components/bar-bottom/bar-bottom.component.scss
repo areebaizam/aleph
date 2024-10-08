@@ -1,5 +1,6 @@
-@import '@styles/theme.scss';
+@import '@styles/colors.scss';
 
-.mat-toolbar-single-row{
-    // border-top: 1px solid #{$secondary-80};
+.mat-toolbar {
+    background: $surface-container;
+    border-top: 1px solid #{$outline-variant};
 }
