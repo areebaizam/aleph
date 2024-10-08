@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
 //Components
 import { BarBottomComponent, BarTopComponent } from '@core/components';
 //Services
-import { MediaService, ToggleService } from '@core/services';
+import { IconService, MediaService, ToggleService } from '@core/services';
 //Models
 import { eAppEventToggleType } from '@shared/models';
 
@@ -20,6 +20,7 @@ const components = [BarBottomComponent, BarTopComponent];
   styleUrl: './sidenav.component.scss'
 })
 export class SidenavComponent {
+  iconService = inject(IconService);
   mediaService = inject(MediaService);
   toggleService = inject(ToggleService);
 
