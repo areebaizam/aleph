@@ -1,15 +1,15 @@
 @import '@styles/variables.scss';
 
-.flex-column,
-.full-screen {
+.flex-column{
     display: flex !important;
     flex-direction: column;
     flex-grow: 1;
 }
 
-.full-screen {
-    min-width: 360px;
+.app-container {
+    min-width: $app-screen-min-width;
     min-height: $page-wrapper-height;
+    --mat-sidenav-container-width: #{$app-drawer-width};
 }
 
 .position-fixed {

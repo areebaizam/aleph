@@ -1,6 +1,6 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import { computed, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
-import { APP_EVENT_TOGGLE_ICONS } from '@shared/models';
+import { APP_EVENT_TOGGLE_ICONS, APP_SIDENAV_TOGGLE_ICON } from '@shared/models';
 import { eAppEventToggleType, EventToggleModel } from '@shared/models/common.model';
 
 @Injectable({
@@ -9,6 +9,8 @@ import { eAppEventToggleType, EventToggleModel } from '@shared/models/common.mod
 export class ToggleService {
   #toggleIcons = signal<EventToggleModel[]>(APP_EVENT_TOGGLE_ICONS);
   toggleIcons = computed(this.#toggleIcons);
+  #toggleSidenavIcon = signal<EventToggleModel>(APP_SIDENAV_TOGGLE_ICON);
+  toggleSidenavIcon = computed(this.#toggleSidenavIcon);
   isSidebarOpen = signal<boolean>(false);
   document = inject(DOCUMENT);
   #darkThemeMediaQuery: MediaQueryList | undefined;
@@ -22,7 +24,7 @@ export class ToggleService {
     this.setThemeParams();
   }
 
-  setThemeParams(){
+  setThemeParams() {
     if (isPlatformBrowser(this.platformId)) {
       //Todo handle icon base on sys preference
       this.#darkThemeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -44,9 +46,9 @@ export class ToggleService {
     this.updateTheme(darkDefault);
   }
 
-  updateTheme(state:boolean){
+  updateTheme(state: boolean) {
     this.isDarkMode.set(state);
-    this.document.documentElement.classList.toggle('dark-theme',this.isDarkMode());
+    this.document.documentElement.classList.toggle('dark-theme', this.isDarkMode());
   }
 
   handleToggleEvent(type: eAppEventToggleType, state: boolean): void {
@@ -58,25 +60,30 @@ export class ToggleService {
       case eAppEventToggleType.FULLSCREEN:
         this.toggleFullscreen();
         break;
-      case eAppEventToggleType.THEME:        
+      case eAppEventToggleType.THEME:
         this.updateTheme(state);
         break;
     }
   }
 
   private updateState(type: eAppEventToggleType, state: boolean) {
-    this.#toggleIcons.update((icons) =>
-      icons.map((icon) =>
-        icon.type === type ? { ...icon, isActive: state } : icon
-      )
-    );
+    switch (type) {
+      case eAppEventToggleType.SIDENAV:
+        this.#toggleSidenavIcon.update((icon) => { return { ...icon, isActive: state }; });
+        break;
+      default:
+        this.#toggleIcons.update((icons) =>
+          icons.map((icon) =>
+            icon.type === type ? { ...icon, isActive: state } : icon
+          )
+        );
+    }
   }
 
   // Enter fullscreen mode
   private toggleFullscreen() {
-    const elem = this.document.documentElement;
     if (!this.document.fullscreenElement) {
-      elem.requestFullscreen();
+      this.document.documentElement.requestFullscreen();
     }
     else this.document.exitFullscreen();
   }
@@ -84,8 +91,25 @@ export class ToggleService {
   //TODO:BUG Handle F11 full screen 
   private onKeydown($event: KeyboardEvent) {
     $event.stopImmediatePropagation();
+
     if ($event.key === 'F11') {
       this.updateState(eAppEventToggleType.FULLSCREEN, true);
     }
+    // Check if the focussed element is editable
+    if (this.isActiveElementEditable()) return;
+
+    if ($event.key === 'F' || $event.key === 'f') {
+      this.toggleFullscreen();
+    }
+    else if ($event.key === 'D' || $event.key === 'd') {
+      this.handleToggleEvent(eAppEventToggleType.THEME, !this.isDarkMode());
+    }
+  }
+
+  private isActiveElementEditable(): boolean {
+    const activeElement = this.document.activeElement as HTMLElement;
+    return activeElement.tagName === 'INPUT' ||
+      activeElement.tagName === 'TEXTAREA' ||
+      activeElement.isContentEditable;
   }
 }

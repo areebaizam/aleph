@@ -19,6 +19,7 @@ export class IconEventToggleComponent {
   data = input.required<EventToggleModel>();
   toggleService = inject(ToggleService);
   icon = computed<string>(() => !this.data().isActive ? this.data().icon : this.data().iconAlt);
+  tooltip = computed<string>(() => !this.data().isActive ? this.data().tooltip : this.data().tooltipAlt);
 
   onToggleIconClicked($event: Event): void {
     $event.stopPropagation();

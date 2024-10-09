@@ -3,11 +3,14 @@
     <tap-brand></tap-brand>
     <div>
         @for (link of data; track $index) {
-        <tap-btn-navigation [data]="link"></tap-btn-navigation>}
+        <tap-btn-nav [data]="link"></tap-btn-nav>}
     </div>
 
     <div>
+        @if(mediaService.isLarge()){
         @for(icon of toggleService.toggleIcons();track $index){
-        <tap-icon-event-toggle [data]="icon"></tap-icon-event-toggle>}
+        <tap-icon-event-toggle [data]="icon"></tap-icon-event-toggle> } }
+        @else {<tap-icon-event-toggle [data]="toggleService.toggleSidenavIcon()"></tap-icon-event-toggle> }
     </div>
+
 </mat-toolbar>

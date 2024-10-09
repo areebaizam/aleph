@@ -1,11 +1,11 @@
-import { Component, inject, } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { ToggleService } from '@core/services';
-import { BrandComponent, BtnNavigationComponent, IconEventToggleComponent } from '@shared/components';
+import { MediaService, ToggleService } from '@core/services';
+import { BrandComponent, BtnNavComponent, IconEventToggleComponent } from '@shared/components';
 import { APP_NAV_BTNS, BtnNavModel } from '@shared/models';
 
 
-const components = [BrandComponent, BtnNavigationComponent, IconEventToggleComponent]
+const components = [BrandComponent, BtnNavComponent, IconEventToggleComponent]
 @Component({
   selector: 'tap-bar-top',
   standalone: true,
@@ -16,4 +16,5 @@ const components = [BrandComponent, BtnNavigationComponent, IconEventToggleCompo
 export class BarTopComponent {
   data: BtnNavModel[] = APP_NAV_BTNS;//TODO move this to service
   toggleService = inject(ToggleService);
+  mediaService = inject(MediaService);
 }

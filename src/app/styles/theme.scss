@@ -12,7 +12,7 @@
 
 // Define the theme object.
 $light-theme: mat.define-theme((color: (theme-type: light,
-        primary: mat.$rose-palette,
+        primary: mat.$chartreuse-palette,
         tertiary: mat.$blue-palette,
       )));
 
@@ -24,8 +24,6 @@ $dark-theme: mat.define-theme((color: (theme-type: dark,
 html {
   // Apply the light theme by default
   @include mat.all-component-themes($light-theme);
-
-
   // Apply the dark theme only when the user prefers dark themes.
   // @media (prefers-color-scheme: dark) {
   //   // Use the `-color` mixins to only apply color styles without reapplying the same
@@ -44,5 +42,5 @@ html {
   text-transform: capitalize;
   justify-content: space-between;
   --mat-toolbar-container-text-color:#{$primary};
-  --mdc-icon-button-icon-color: #{$primary};  
+  --mdc-icon-button-icon-color: #{$primary};
 }

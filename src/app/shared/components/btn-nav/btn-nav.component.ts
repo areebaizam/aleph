@@ -5,12 +5,12 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { BtnNavModel } from '@shared/models';
 
 @Component({
-  selector: 'tap-btn-navigation',
+  selector: 'tap-btn-nav',
   standalone: true,
   imports: [RouterLinkActive,RouterLink, MatButtonModule, MatIconModule],
-  templateUrl: './btn-navigation.component.html',
-  styleUrl: './btn-navigation.component.scss'
+  templateUrl: './btn-nav.component.html',
+  styleUrl: './btn-nav.component.scss'
 })
-export class BtnNavigationComponent {
+export class BtnNavComponent {
   data = input.required<BtnNavModel>()
 }

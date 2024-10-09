@@ -30,6 +30,8 @@ export class BtnNavModel {
 export interface EventToggleModel {
   icon: string;
   iconAlt: string;
+  tooltip: string;
+  tooltipAlt: string;
   type: eAppEventToggleType;
   isActive: boolean;
 }

@@ -1,6 +1,6 @@
-<mat-sidenav-container>
+<mat-sidenav-container class="app-container">
     <mat-sidenav role="dialog" mode='over' [opened]="toggleService.isSidebarOpen()" (closedStart)="sidenavClosed()"></mat-sidenav>
-    <mat-sidenav-content class="full-screen">
+    <mat-sidenav-content>
         <!-- Top Bar for Large Screen -->
         @if(!mediaService.isMobile()){
         <tap-bar-top></tap-bar-top>

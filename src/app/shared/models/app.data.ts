@@ -67,33 +67,40 @@ export const APP_NAV_BTNS = [
         label: "contact",
         url: eFeatureRouteURL.CONTACT,
     },
-    {
-        order: 2,
-        id: 2,
-        icon: "phone",
-        label: "contact",
-        url: eFeatureRouteURL.CONTACT,
-    },
 ] as Array<BtnNavModel>;
 
 export const APP_EVENT_TOGGLE_ICONS = [
-    {
-        icon: "menu",
-        iconAlt: "menu_open",
-        isActive:false,
-        type: eAppEventToggleType.SIDENAV,
-    },
+    // {
+    //     icon: "menu",
+    //     iconAlt: "menu_open",
+    //     isActive: false,
+    //     type: eAppEventToggleType.SIDENAV,
+    // },
     {
         icon: "fullscreen",
         iconAlt: "fullscreen_exit",
-        isActive:false,
+        tooltip:"Full screen (f)",
+        tooltipAlt:"Exit full screen (f)",
+        isActive: false,
         type: eAppEventToggleType.FULLSCREEN,
     },
     {
         icon: "dark_mode",
         iconAlt: "light_mode",
-        isActive:false,
+        tooltip:"Switch to dark mode (d)",
+        tooltipAlt:"Switch to light mode (d)",
+        isActive: false,
         type: eAppEventToggleType.THEME,
     },
 
 ] as Array<EventToggleModel>;
+
+export const APP_SIDENAV_TOGGLE_ICON =
+    {
+        icon: "menu",
+        iconAlt: "menu_open",
+        tooltip:"Open menu",
+        tooltipAlt:"Close menu",
+        isActive: false,
+        type: eAppEventToggleType.SIDENAV,
+    } as EventToggleModel;
